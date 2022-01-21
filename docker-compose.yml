@@ -13,7 +13,6 @@ services:
       DNSMASQ_LISTENING: local
       WEB_PORT: 8000
 #      WEBPASSWORD: 'test'
-      ServerIp: 192.168.0.21
     dns:
       - 127.0.0.1
       - 8.8.8.8
@@ -23,21 +22,3 @@ services:
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
-
-networks:
-  pihole_network:
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-        - subnet: 192.168.1.0/24
-          gateway: 192.168.0.1
-          ip_range: 192.168.0.100/32
-  pihole_bridge:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.0.1/24
-          gateway: 192.168.0.1
-          ip_range: 192.168.0.99/32
