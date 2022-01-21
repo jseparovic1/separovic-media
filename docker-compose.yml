@@ -6,16 +6,10 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "67:67/udp"
       - "8000:80/tcp"
     environment:
       TZ: ${TIMEZONE:-Europe/Zagreb}
-      DNSMASQ_LISTENING: local
-      WEB_PORT: 8000
-#      WEBPASSWORD: 'test'
-    dns:
-      - 127.0.0.1
-      - 8.8.8.8
+      WEBPASSWORD: ${WEBPASSWORD:-admin}
     volumes:
       - ./data/pihole/conf:/etc/pihole/
       - ./data/pihole/dnsmasq:/etc/dnsmasq.d/
